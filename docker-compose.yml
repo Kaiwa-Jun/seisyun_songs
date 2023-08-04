@@ -21,6 +21,7 @@ services:
       - db-volume:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: app_production
       TZ: "Asia/Tokyo"
     ports:
       - "3306:3306"
