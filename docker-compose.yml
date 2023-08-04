@@ -10,20 +10,19 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_USER: root
-      DATABASE_PASSWORD: password
+      DATABASE_USER: ${POSTGRES_USER}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
       DATABASE_HOST: db
   db:
-    image: mysql:5.7
-    platform: linux/amd64
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    image: postgres:13
     volumes:
-      - db-volume:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data/
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: app_production
-      TZ: "Asia/Tokyo"
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "3306:3306"
+      - "5432:5432"
+
 volumes:
-  db-volume:
+  postgres_data:
