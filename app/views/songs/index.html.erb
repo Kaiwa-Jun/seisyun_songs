@@ -5,3 +5,11 @@
     <li><%= song.title %></li>
   <% end %>
 </ul>
+
+<% if current_user %>
+  <div>
+    <h2><%= current_user.username %></h2>
+    <p><%= current_user.email %></p>
+    <p><%= current_user.age %></p>
+  </div>
+<% end %>
