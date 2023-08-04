@@ -9,6 +9,10 @@ services:
       - 3002:3001
     depends_on:
       - db
+    environment:
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+      DATABASE_HOST: db
   db:
     image: mysql:5.7
     platform: linux/amd64
