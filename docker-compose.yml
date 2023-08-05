@@ -5,8 +5,8 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %>
-      POSTGRES_USER: <%= ENV['DB_USERNAME'] %>
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_USER: myuser
       POSTGRES_DB: your_project_development
   web:
     build: .
@@ -17,3 +17,6 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    environment: # この部分を追加
+      DB_USERNAME: $DB_USERNAME
+      DB_PASSWORD: $DB_PASSWORD
