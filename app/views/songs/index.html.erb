@@ -6,6 +6,7 @@
     <li>
       <%= song.title %>
       <%# <%= link_to "削除", song_path(song), method: :delete, data: { confirm: "この曲を削除してもよろしいですか？" } %>
+      <%= link_to 'いいね', likes_path(song_id: song.id), method: :post, class: "like-button" %>
     </li>
   <% end %>
 </ul>
