@@ -1,4 +1,6 @@
 class SongsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+
   def index
     @songs = Song.all
   end
@@ -27,6 +29,12 @@ class SongsController < ApplicationController
 
 
   private
+
+  def authenticate_user!
+    unless current_user
+      redirect_to login_path, alert: "ログインしてください"
+    end
+  end
 
   def song_params
     params.require(:song).permit(:title, :artist, :youtube_url, :user_id)

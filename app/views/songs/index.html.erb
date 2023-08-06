@@ -5,7 +5,7 @@
   <% @songs.each do |song| %>
     <li>
       <%= song.title %>
-      <%= link_to "削除", song_path(song), method: :delete, data: { confirm: "この曲を削除してもよろしいですか？" } %>
+      <%# <%= link_to "削除", song_path(song), method: :delete, data: { confirm: "この曲を削除してもよろしいですか？" } %>
     </li>
   <% end %>
 </ul>
