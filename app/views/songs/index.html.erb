@@ -1,15 +1,12 @@
 <h1>All Songs</h1>
+<%= link_to '曲を検索', new_song_path %>
 
 <ul>
   <% @songs.each do |song| %>
-    <li><%= song.title %></li>
+    <li>
+      <%= song.title %>
+      <%= link_to "削除", song_path(song), method: :delete, data: { confirm: "この曲を削除してもよろしいですか？" } %>
+    </li>
   <% end %>
 </ul>
 
-<% if current_user %>
-  <div>
-    <h2><%= current_user.username %></h2>
-    <p><%= current_user.email %></p>
-    <p><%= current_user.age %></p>
-  </div>
-<% end %>

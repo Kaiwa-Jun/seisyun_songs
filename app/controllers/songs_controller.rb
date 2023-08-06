@@ -2,4 +2,33 @@ class SongsController < ApplicationController
   def index
     @songs = Song.all
   end
+
+  def create
+    @song = Song.new(song_params.merge(user_id: current_user.id))
+    if @song.save
+      redirect_to root_path, notice: "曲が正常に投稿されました!"
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @song = Song.find(params[:id])
+    @song.destroy
+    redirect_to root_path, notice: "曲が正常に削除されました!"
+  end
+
+  def search
+    keyword = params[:keyword]
+    @results = YoutubeSearchService.new(keyword).search
+
+    render :new
+  end
+
+
+  private
+
+  def song_params
+    params.require(:song).permit(:title, :artist, :youtube_url, :user_id)
+  end
 end

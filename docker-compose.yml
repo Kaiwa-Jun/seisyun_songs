@@ -17,6 +17,6 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    environment: # この部分を追加
-      DB_USERNAME: $DB_USERNAME
-      DB_PASSWORD: $DB_PASSWORD
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}

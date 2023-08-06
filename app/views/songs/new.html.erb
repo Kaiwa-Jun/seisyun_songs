@@ -1,0 +1,21 @@
+<h1>曲の検索</h1>
+<%= link_to '曲一覧に戻る', root_path %>
+
+<%= form_with url: search_songs_path, method: :get, local: true do |f| %>
+  <%= f.label :keyword, "曲名やアーティスト名を入力" %>
+  <%= f.text_field :keyword %>
+  <%= f.submit "検索" %>
+<% end %>
+
+<% if @results.present? %>
+  <h3>検索結果</h3>
+  <ul>
+    <% @results.each do |result| %>
+      <li>
+        <strong><%= result[:title] %></strong> by <%= result[:artist] %><br>
+        <%= link_to "YouTubeで見る", result[:youtube_url], target: "_blank" %><br>
+        <%= button_to "この曲を投稿", songs_path(song: result), method: :post %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
