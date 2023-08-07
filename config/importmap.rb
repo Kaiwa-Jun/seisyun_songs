@@ -6,7 +6,6 @@ Rails.application.config.importmap.draw do
   pin_all_from "app/javascript/stylesheets", under: "stylesheets"
 
   # Files
-  pin "application"
   pin "cable", to: "channels/cable.js"
   pin "rails-ujs", to: "rails-ujs.js"
   # Pin npm packages by adding the package names from your package.json
