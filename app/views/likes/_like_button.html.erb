@@ -1,11 +1,7 @@
 <turbo-frame id="like-button-<%= song.id %>">
   <% if liked %>
-    <%= link_to like_path(song.id), method: :delete, data: { turbo_method: :delete } do %>
-      <i class="fas fa-heart"></i>
-    <% end %>
+    <%= button_to "❤️", like_path(song.id), method: :delete, data: { turbo_method: :delete }, form: { 'data-turbo-frame': "like-button-#{song.id}" } %>
   <% else %>
-    <%= link_to likes_path(song_id: song.id), method: :post, data: { turbo_method: :post } do %>
-      <i class="far fa-heart"></i>
-    <% end %>
+    <%= button_to "♡", likes_path(song_id: song.id), method: :post, data: { turbo_method: :post }, form: { 'data-turbo-frame': "like-button-#{song.id}" } %>
   <% end %>
 </turbo-frame>
