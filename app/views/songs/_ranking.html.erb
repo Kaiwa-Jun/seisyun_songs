@@ -1,0 +1,10 @@
+<h2>年齢別ランキング</h2>
+<% [['10-20', 10..20], ['21-30', 21..30], ['31-40', 31..40]].each do |label, age_range| %>
+<h3><%= label %>歳ランキング</h3>
+<ol>
+  <% Song.top_likes_by_age(age_range).each do |song| %>
+    <li><%= song.title %> (<%= song.likes_count %> いいね)</li>
+  <% end %>
+</ol>
+
+<% end %>
