@@ -1,6 +1,8 @@
 <h1>All Songs</h1>
 <%= link_to '曲を検索', new_song_path %>
 
+<%= render 'songs/ranking' %>
+
 <ul>
 <% @songs.each do |song| %>
   <li>
