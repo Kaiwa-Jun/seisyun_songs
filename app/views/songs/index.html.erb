@@ -9,6 +9,8 @@
 
     <% if current_user %>
       <%= render 'likes/like_button', song: song, liked: song.liked_by?(current_user) %>
+      <%# <%= link_to '削除', song_path(song), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？'} %> %>
+      <%= button_to "削除", song, method: :delete, form: { data: { turbo_confirm: "削除してよろしいですか？" } } %>
     <% end %>
   </li>
 <% end %>

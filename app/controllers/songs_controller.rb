@@ -16,8 +16,9 @@ class SongsController < ApplicationController
 
   def destroy
     @song = Song.find(params[:id])
+    @song.likes.destroy_all
     @song.destroy
-    redirect_to root_path, notice: "曲が正常に削除されました!"
+    redirect_to root_path, status: :see_other, notice: "曲が正常に削除されました!"
   end
 
   def search
