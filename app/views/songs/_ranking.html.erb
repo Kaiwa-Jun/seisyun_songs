@@ -7,6 +7,7 @@
       </h3>
       <ol>
         <% Song.top_likes_by_age(age_range).each_with_index do |song, index| %>
+          <% break if index >= 3 %> <!-- 3位まで表示する制限を追加 -->
           <li class="text-lg mb-4">
             <% if index == 0 %> <!-- 1位部分 -->
               <div class="relative group">

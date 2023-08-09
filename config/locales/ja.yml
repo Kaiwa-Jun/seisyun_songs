@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        username: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+        age: "年齢"
+  labels:
+    login:
+      email: "メールアドレス"
+      password: "パスワード"
