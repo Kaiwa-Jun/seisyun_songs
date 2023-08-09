@@ -1,0 +1,3 @@
+<turbo-stream action="replace" target="like-wrapper-<%= @song.id %>">
+  <%= render partial: "like_button", locals: { song: @song, liked: true } %>
+</turbo-stream>
