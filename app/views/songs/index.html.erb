@@ -1,5 +1,6 @@
-<h1 class="text-4xl text-blue-500">All Songs</h1>
-<%= link_to '曲を検索', new_song_path %>
+<div class="text-center my-4"> <!-- 画面中央にボタンを配置するためのdiv -->
+  <%= link_to '曲を投稿する！', current_user ? new_song_path : login_path, class: "py-2 px-4 bg-blue-500 text-white text-xl rounded-md hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-400" %> <!-- ログインしている場合は新曲投稿ページ、そうでない場合はログインページへ遷移 -->
+</div>
 
 <%= render 'songs/ranking' %>
 
@@ -18,5 +19,4 @@
     <% end %>
   </li>
 <% end %>
-
 </ul>
