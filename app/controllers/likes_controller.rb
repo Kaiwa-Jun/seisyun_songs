@@ -3,35 +3,36 @@ class LikesController < ApplicationController
   before_action :set_song
 
 def create
-  like = current_user.likes.build(song_id: @song.id)
-  if like.save
-    render turbo_stream: turbo_stream.replace(
-      "like_button_#{@song.id}",
-      partial: "likes/like_button",
-      locals: { song: @song, liked: true }
-    )
-  else
-    # フラッシュメッセージを設定し、リダイレクトします。
-    flash[:alert] = "いいねに失敗しました。"
-    redirect_to some_path
+  @song = Song.find(params[:song_id])
+  @like = current_user.likes.build(song_id: @song.id)
+
+  respond_to do |format|
+    if @like.save
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("like-wrapper-#{@song.id}", partial: 'likes/like_button', locals: { song: @song, liked: true }) }
+      format.html { redirect_to songs_path }
+    else
+      flash[:alert] = "いいねに失敗しました。"
+      format.html { redirect_to songs_path }
+    end
   end
 end
 
+
 def destroy
-  Rails.logger.info("Parameters: #{params.inspect}")
+  @song = Song.find(params[:song_id])
   like = current_user.likes.find_by(song_id: @song.id)
-  if like&.destroy
-    render turbo_stream: turbo_stream.replace(
-      "like_button_#{@song.id}",
-      partial: "likes/like_button",
-      locals: { song: @song, liked: false }
-    )
-  else
-    # フラッシュメッセージを設定し、リダイレクトします。
-    flash[:alert] = "いいねの解除に失敗しました。"
-    redirect_to some_path
+
+  respond_to do |format|
+    if like&.destroy
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("like-wrapper-#{@song.id}", partial: 'likes/like_button', locals: { song: @song, liked: false }) }
+      format.html { redirect_to songs_path }
+    else
+      flash[:alert] = "いいねの解除に失敗しました。"
+      format.html { redirect_to songs_path }
+    end
   end
 end
+
 
   private
 

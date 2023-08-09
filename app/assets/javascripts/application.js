@@ -1,6 +1,9 @@
 console.log("JavaScript is loaded.");
 //= require font-awesome
 
+import "@hotwired/turbo-rails";
+import "controllers";
+
 import { Turbo } from "@hotwired/turbo-rails";
 console.log(Turbo);
 
