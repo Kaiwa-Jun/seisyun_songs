@@ -26,6 +26,9 @@
                 <%= button_to song_path(song), method: :delete, form: { data: { turbo_confirm: "削除してよろしいですか？" } }, class: "ml-2 p-0" do %>
                   <%= image_tag 'icons8-trash.svg', class: 'w-6 h-6' %>
                 <% end %>
+                <a href="https://twitter.com/intent/tweet?text=<%= CGI.escape("#{current_user.username}さんの青春の一曲「#{song.title}」#{song.youtube_url} このサービスについてはこちら：http://localhost:3000") %>" target="_blank" style="background-color: #0f1419; color: #fff;" class="py-1 px-3 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-700">
+                  &#x1D54F;でシェア
+                </a>
               <% end %>
             </div>
           </div>
