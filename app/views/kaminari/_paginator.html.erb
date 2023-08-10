@@ -1,0 +1,25 @@
+<%# The container tag
+  - available local variables
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+    paginator:     the paginator that renders the pagination tags inside
+-%>
+<div class="paginator-container">
+<nav aria-label="Page navigation example">
+  <ul class="inline-flex -space-x-px text-sm">
+    <li>
+      <%= link_to 'Previous', url_for(page: current_page == 1 ? 1 : current_page - 1), class: "flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white #{'opacity-50 pointer-events-none' if current_page.first?}" %>
+    </li>
+    <% 1.upto(total_pages).each do |page| %>
+      <li>
+        <%= link_to page, url_for(page: page), remote: remote, class: "flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white #{'text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white' if page == current_page}" %>
+      </li>
+    <% end %>
+    <li>
+      <%= link_to 'Next', url_for(page: current_page == total_pages ? total_pages : current_page + 1), class: "flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white #{'opacity-50 pointer-events-none' if current_page.last?}" %>
+    </li>
+  </ul>
+</nav>
+</div>
