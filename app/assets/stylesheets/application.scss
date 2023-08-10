@@ -8,3 +8,12 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.paginator-container {
+  text-align: center;
+  margin-bottom: 50px; /* スペースの大きさを調整 */
+}
+
+.paginator-container nav {
+  display: inline-block;
+}
