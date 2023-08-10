@@ -12,9 +12,10 @@
           <img src="https://img.youtube.com/vi/<%= youtube_video_id(song.youtube_url) %>/0.jpg" alt="<%= song.title %> Thumbnail" class="mx-auto w-70">
         </a>
         <div class="mt-2 w-70 mx-auto text-left">
-          <p class="font-bold"><%= song.title %> - <%= song.artist %></p>
-          <div class="flex items-center">
-            <%= image_tag 'icons8-user.png', class: 'w-6 h-6 rounded-full bg-gray-200' %>
+          <p class="font-bold text-lg truncate" title="<%= song.title %>"><%= song.title %></p> <!-- タイトル -->
+          <p class="text-gray-500"><%= song.artist %></p> <!-- アーティスト名 -->
+          <div class="flex items-center mt-4">
+            <%= image_tag 'icons8-user.png', class: 'w-8 h-8 rounded-full bg-gray-200 mr-4' %>
             <span><%= song.user.username %></span>
           </div>
           <div class="flex justify-end items-center">
