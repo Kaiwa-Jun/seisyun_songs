@@ -46,3 +46,20 @@ document.addEventListener("turbo:frame-fetch-fail", () => {
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Document is fully loaded and parsed");
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const messages = document.querySelectorAll(".alert-message");
+  if (messages.length > 0) {
+    messages.forEach((message) => {
+      // 5秒後にメッセージを非表示にする
+      setTimeout(() => {
+        message.style.opacity = 0;
+      }, 5000);
+
+      // オパシティの変更が完了したらメッセージを削除する
+      message.addEventListener("transitionend", () => {
+        message.remove();
+      });
+    });
+  }
+});
