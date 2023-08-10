@@ -1,22 +1,36 @@
-<div class="text-center my-4"> <!-- 画面中央にボタンを配置するためのdiv -->
-  <%= link_to '曲を投稿する！', current_user ? new_song_path : login_path, class: "py-2 px-4 bg-blue-500 text-white text-xl rounded-md hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-400" %> <!-- ログインしている場合は新曲投稿ページ、そうでない場合はログインページへ遷移 -->
+<div class="text-center my-4">
+  <%= link_to '曲を投稿する！', current_user ? new_song_path : login_path, class: "py-2 px-4 bg-blue-500 text-white text-xl rounded-md hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-400" %>
 </div>
 
 <%= render 'songs/ranking' %>
 
-<ul>
-<% @songs.each do |song| %>
-  <li>
-    <%= song.title %>
-    <span><%= song.likes.count %> いいね</span>
-
-    <% if current_user %>
-      <%= render 'likes/like_button', song: song, liked: song.liked_by?(current_user) %>
-
-      <% if song.user_id == current_user.id %>
-        <%= button_to "削除", song_path(song), method: :delete, form: { data: { turbo_confirm: "削除してよろしいですか？" } } %>
-      <% end %>
-    <% end %>
-  </li>
-<% end %>
-</ul>
+<div class="flex flex-wrap justify-center">
+  <% @songs.order(created_at: :desc).each do |song| %>
+    <div class="w-full sm:w-1/2 md:w-1/3 mb-12 px-2 text-center">
+      <div class="border rounded shadow p-4 bg-white">
+        <a href="<%= song.youtube_url %>" target="_blank" rel="noopener noreferrer">
+          <img src="https://img.youtube.com/vi/<%= youtube_video_id(song.youtube_url) %>/0.jpg" alt="<%= song.title %> Thumbnail" class="mx-auto w-70">
+        </a>
+        <div class="mt-2 w-70 mx-auto text-left">
+          <p class="font-bold text-lg truncate" title="<%= song.title %>"><%= song.title %></p> <!-- タイトル -->
+          <p class="text-gray-500"><%= song.artist %></p> <!-- アーティスト名 -->
+          <div class="flex items-center mt-4">
+            <%= image_tag 'icons8-user.png', class: 'w-8 h-8 rounded-full bg-gray-200 mr-4' %>
+            <span><%= song.user.username %></span>
+          </div>
+          <div class="flex justify-end items-center">
+            <div class="flex items-center">
+              <%= render 'likes/like_button', song: song, liked: current_user && song.liked_by?(current_user) %>
+              <span><%= song.likes.count %></span>
+              <% if current_user && song.user_id == current_user.id %>
+                <%= button_to song_path(song), method: :delete, form: { data: { turbo_confirm: "削除してよろしいですか？" } }, class: "ml-2 p-0" do %>
+                  <%= image_tag 'icons8-trash.svg', class: 'w-6 h-6' %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -11,24 +11,32 @@
           <li class="text-lg mb-4">
             <% if index == 0 %> <!-- 1位部分 -->
               <div class="relative group">
-                <a href="<%= song.youtube_url %>" target="_blank" rel="noopener noreferrer">
-                  <img class="w-70" src="https://img.youtube.com/vi/<%= youtube_video_id(song.youtube_url) %>/0.jpg" alt="<%= song.title %> Thumbnail">
-                </a>
-                <div class="absolute bottom-0 left-0 bg-white bg-opacity-70 w-full text-center opacity-0 group-hover:opacity-100">
-                  <%= song.title %> (<%= song.likes_count %> いいね)
-                </div>
-              </div>
+  <a href="<%= song.youtube_url %>" target="_blank" rel="noopener noreferrer">
+    <img class="w-70" src="https://img.youtube.com/vi/<%= youtube_video_id(song.youtube_url) %>/0.jpg" alt="<%= song.title %> Thumbnail">
+  </a>
+  <div class="absolute bottom-0 left-0 bg-white bg-opacity-70 w-full text-left opacity-0 group-hover:opacity-100">
+    <p class="truncate" title="<%= song.title %>"><%= song.title %></p> <!-- タイトル -->
+    <%= image_tag 'icons8-likeafter.png', class: 'w-6 h-6 inline-block' %> <!-- いいねアイコン -->
+    <span><%= song.likes_count %></span> <!-- いいね数 -->
+  </div>
+</div>
+
             <% else %> <!-- 2位以降部分 -->
               <div class="flex items-center">
-                <%= image_tag "kkrn_icon_ranking_#{index + 1}.svg", alt: "#{index + 1} place", class: 'w-8 mr-2' if index < 3 %>
-                <a href="<%= song.youtube_url %>" target="_blank" rel="noopener noreferrer">
-                  <img class="w-32" src="https://img.youtube.com/vi/<%= youtube_video_id(song.youtube_url) %>/0.jpg" alt="<%= song.title %> Thumbnail">
-                </a>
-                <div class="ml-4">
-                  <div><%= song.title %></div>
-                  <div><%= song.likes_count %> いいね</div>
-                </div>
-              </div>
+  <%= image_tag "kkrn_icon_ranking_#{index + 1}.svg", alt: "#{index + 1} place", class: 'w-8 mr-2' if index < 3 %>
+  <a href="<%= song.youtube_url %>" target="_blank" rel="noopener noreferrer">
+    <img class="w-32" src="https://img.youtube.com/vi/<%= youtube_video_id(song.youtube_url) %>/0.jpg" alt="<%= song.title %> Thumbnail">
+  </a>
+<div class="ml-4 text-left">
+    <p title="<%= song.title %>" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;"><%= song.title %></p>
+    <div>
+      <%= image_tag 'icons8-likeafter.png', class: 'w-6 h-6 inline-block' %> <!-- いいねアイコン -->
+      <span><%= song.likes_count %></span> <!-- いいね数 -->
+    </div>
+</div>
+
+</div>
+
             <% end %>
           </li>
         <% end %>

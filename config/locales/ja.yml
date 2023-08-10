@@ -1,12 +1,29 @@
 ja:
+  messages:
+    logged_out: "ログアウトしました!"
   activerecord:
-    attributes:
-      user:
-        username: "ユーザー名"
-        email: "メールアドレス"
-        password: "パスワード"
-        password_confirmation: "パスワード確認"
-        age: "年齢"
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              blank: "ユーザー名を入力してください。"
+            email:
+              blank: "メールアドレスを入力してください。"
+            password:
+              blank: "パスワードを入力してください。"
+            age:
+              blank: "年齢を入力してください。"
+  errors:
+    messages:
+      invalid_email_password: "メールアドレスまたはパスワードが無効です"
+  attributes:
+    user:
+      username: "ユーザー名"
+      email: "メールアドレス"
+      password: "パスワード"
+      password_confirmation: "パスワード確認"
+      age: "年齢"
   labels:
     login:
       email: "メールアドレス"

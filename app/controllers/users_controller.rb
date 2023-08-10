@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Successfully created your account!'
+      redirect_to root_path, notice: '新規登録に成功しました!'
     else
       render :new
     end
