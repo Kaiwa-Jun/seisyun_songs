@@ -33,4 +33,4 @@
 .env
 ```
 
-/services/youtube_search_service.rb
+/app/services/youtube_search_service.rb
