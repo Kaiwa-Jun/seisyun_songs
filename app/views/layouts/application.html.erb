@@ -18,7 +18,9 @@
   <header>
     <nav class="flex justify-between items-center p-4">
       <div>
-        <%= link_to 'ホーム', root_path, class: "text-blue-600 hover:text-blue-500" %> <!-- 左側のコンテンツにホームリンクを追加 -->
+        <%= link_to root_path, class: "text-blue-600 hover:text-blue-500" do %>
+          <%= image_tag 'icons8-home.png', alt: 'ホーム' %>
+        <% end %>
       </div>
       <div>
         <% if current_user %>
