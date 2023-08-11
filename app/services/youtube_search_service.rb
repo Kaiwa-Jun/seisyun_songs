@@ -5,8 +5,7 @@ class YoutubeSearchService
   def initialize(keyword, page_token = nil)
     @keyword = keyword
     @page_token = page_token
-    # @api_key = ENV['YOUTUBE_API_KEY']
-    @api_key = 'AIzaSyDPSQaXefzHW9L2QakfqZgd3TNifJZ7ZZ0'
+    @api_key = ENV['YOUTUBE_API_KEY']
     Rails.logger.info("API key: #{@api_key}")
   end
 
