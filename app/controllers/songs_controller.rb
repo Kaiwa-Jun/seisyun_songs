@@ -8,9 +8,8 @@ class SongsController < ApplicationController
   def create
     @song = Song.new(song_params.merge(user_id: current_user.id))
     if @song.save
-      # Twitter共有用のリンクをフラッシュメッセージとして設定
       twitter_share_link = "https://twitter.com/intent/tweet?text=#{@song.title}&url=#{song_url(@song)}"
-      flash[:twitter_share_link] = twitter_share_link
+      # flash[:twitter_share_link] = twitter_share_link
       redirect_to root_path, notice: "曲が正常に投稿されました!"
     else
       render :new
@@ -25,16 +24,12 @@ class SongsController < ApplicationController
   end
 
   def search
-  keyword = params[:keyword]
-  page_token = params[:page_token]
-  @results, @next_page_token = YoutubeSearchService.new(keyword, page_token).search
-
-  render :new
-end
-
-
-
-
+    keyword = params[:keyword]
+    page_token = params[:page_token]
+    @results, @next_page_token = YoutubeSearchService.new(keyword, page_token).search
+    Rails.logger.info("Search results: #{@results.inspect}")
+    render :new
+  end
 
   private
 

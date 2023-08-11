@@ -2,5 +2,6 @@
   "dependencies": {
     "@hotwired/turbo-rails": "^7.3.0",
     "rails-ujs": "^5.2.8-1"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }

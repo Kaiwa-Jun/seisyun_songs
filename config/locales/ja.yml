@@ -14,16 +14,16 @@ ja:
               blank: "パスワードを入力してください。"
             age:
               blank: "年齢を入力してください。"
+    attributes:
+      user:
+        username: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+        age: "年齢"
   errors:
     messages:
       invalid_email_password: "メールアドレスまたはパスワードが無効です"
-  attributes:
-    user:
-      username: "ユーザー名"
-      email: "メールアドレス"
-      password: "パスワード"
-      password_confirmation: "パスワード確認"
-      age: "年齢"
   labels:
     login:
       email: "メールアドレス"

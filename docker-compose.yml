@@ -10,13 +10,15 @@ services:
       POSTGRES_DB: your_project_development
   web:
     build: .
-    command: bundle exec rails s -p 3001 -b '0.0.0.0' # ポート3001に変更
+    command: bundle exec rails s -p 3001 -b '0.0.0.0'
     volumes:
       - .:/app
     ports:
-      - "3001:3001" # ここも3001に変更
+      - "3001:3001"
     depends_on:
       - db
     environment:
+      RAILS_ENV: development
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
+      SECRET_KEY_BASE: 1bbc075d853ce6d7b792432f9add8a2ad657e007a4cea7562e6d8a219b9e3cf1ec0c3fa280259d51b0312c2e2e1718b343d97e666848a14b40e2cbcf259881cd
