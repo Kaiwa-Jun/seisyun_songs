@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def tailwind_alert_class(message_type)
-    base_class = "alert-message " # alert-message クラスを追加
+    base_class = "alert-message "
 
     case message_type.to_sym
     when :success

@@ -5,18 +5,16 @@
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <%= form_with model: @user, local: true, class: "space-y-6" do |form| %>
-<% if @user.errors.any? %>
-  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
-    <strong class="font-bold">エラーが発生しました！</strong><br />
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li>・<%= message %></li>
+      <% if @user.errors.any? %>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
+          <strong class="font-bold">エラーが発生しました！</strong><br />
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li>・<%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-    </ul>
-  </div>
-<% end %>
-
-
 
       <div class="field">
         <%= form.label :username, class: "block text-sm font-medium leading-6 text-gray-900" %>

@@ -9,6 +9,8 @@ services:
       POSTGRES_USER: myuser
       POSTGRES_DB: your_project_development
   web:
+    env_file:
+      - .env
     build: .
     command: bundle exec rails s -p 3001 -b '0.0.0.0'
     volumes:

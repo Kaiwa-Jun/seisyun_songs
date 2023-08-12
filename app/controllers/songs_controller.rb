@@ -9,7 +9,6 @@ class SongsController < ApplicationController
     @song = Song.new(song_params.merge(user_id: current_user.id))
     if @song.save
       twitter_share_link = "https://twitter.com/intent/tweet?text=#{@song.title}&url=#{song_url(@song)}"
-      # flash[:twitter_share_link] = twitter_share_link
       redirect_to root_path, notice: "曲が正常に投稿されました!"
     else
       render :new

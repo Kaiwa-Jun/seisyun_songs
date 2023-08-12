@@ -17,7 +17,7 @@ class YoutubeSearchService
     type: 'video',
     maxResults: 20,
     part: 'snippet',
-    pageToken: page_token # 次のページトークン
+    pageToken: page_token
   }
   uri = URI(base_url)
   uri.query = URI.encode_www_form(params)
@@ -25,7 +25,7 @@ class YoutubeSearchService
   # タイムアウト時間の設定
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
-  http.read_timeout = 10 # タイムアウト時間を10秒に設定
+  http.read_timeout = 10
 
   response = http.request(Net::HTTP::Get.new(uri.request_uri))
   json = JSON.parse(response.body)

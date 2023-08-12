@@ -11,7 +11,7 @@
 
 .paginator-container {
   text-align: center;
-  margin-bottom: 50px; /* スペースの大きさを調整 */
+  margin-bottom: 50px;
 }
 
 .paginator-container nav {
@@ -36,7 +36,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* 以下、必要に応じてデザインを調整 */
 }
 
 #twitter-share-modal .modal-content {

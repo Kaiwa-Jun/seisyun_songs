@@ -14,8 +14,8 @@ class Song < ApplicationRecord
   def self.top_likes_by_age(age_range)
     joins(:user, :likes)
       .where(users: { age: age_range })
-      .group('songs.title, songs.youtube_url') # グループ化する際にyoutube_urlも考慮
-      .select('songs.title, songs.youtube_url, COUNT(likes.id) AS likes_count') # youtube_urlも選択
+      .group('songs.title, songs.youtube_url')
+      .select('songs.title, songs.youtube_url, COUNT(likes.id) AS likes_count')
       .order('likes_count DESC')
       .limit(5)
   end

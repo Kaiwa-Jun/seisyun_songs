@@ -18,8 +18,8 @@
           <a href="<%= result[:youtube_url] %>" target="_blank" rel="noopener noreferrer">
             <img src="https://img.youtube.com/vi/<%= youtube_video_id(result[:youtube_url]) %>/0.jpg" alt="<%= result[:title] %> Thumbnail" class="w-32">
           </a>
-          <div class="flex-grow flex flex-col w-0"> <!-- 親要素に幅0を設定 -->
-            <div class="truncate text-lg flex-grow w-full"> <!-- truncateクラスと幅100%を適用 -->
+          <div class="flex-grow flex flex-col w-0">
+            <div class="truncate text-lg flex-grow w-full">
               <%= result[:title] %>
             </div>
             <div class="text-sm text-gray-600">
