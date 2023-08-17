@@ -5,6 +5,13 @@ class SongsController < ApplicationController
     @songs = Song.order(created_at: :desc).page(params[:page]).per(12)
   end
 
+  def new
+    @current_year = Time.now.year # 現在の年を取得
+    @current_age = current_user.age
+    @years = (@current_year - @current_age..@current_year).to_a.reverse
+    # 他のロジック
+  end
+
   def create
     @song = Song.new(song_params.merge(user_id: current_user.id))
     if @song.save
@@ -24,11 +31,19 @@ class SongsController < ApplicationController
 
   def search
     keyword = params[:keyword]
+    selected_year = params[:year]
     page_token = params[:page_token]
-    @results, @next_page_token = YoutubeSearchService.new(keyword, page_token).search
+    # YoutubeSearchServiceの引数にkeywordも追加
+    youtube_search_service = YoutubeSearchService.new(keyword, selected_year)
+    @results, @next_page_token = youtube_search_service.search(page_token)
+    @current_year = Time.now.year # 現在の年を取得
+    @current_age = current_user.age
+    @years = (@current_year - @current_age..@current_year).to_a.reverse
     Rails.logger.info("Search results: #{@results.inspect}")
     render :new
   end
+
+
 
   private
 

@@ -46,7 +46,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'font-awesome-sass'
 # gem 'font-awesome-rails'
 gem 'kaminari'
-
+gem 'httparty'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
