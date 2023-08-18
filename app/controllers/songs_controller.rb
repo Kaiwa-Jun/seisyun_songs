@@ -29,19 +29,20 @@ class SongsController < ApplicationController
     redirect_to root_path, status: :see_other, notice: "曲が正常に削除されました!"
   end
 
-  def search
-    keyword = params[:keyword]
-    selected_year = params[:year]
-    page_token = params[:page_token]
-    # YoutubeSearchServiceの引数にkeywordも追加
-    youtube_search_service = YoutubeSearchService.new(keyword, selected_year)
-    @results, @next_page_token = youtube_search_service.search(page_token)
-    @current_year = Time.now.year # 現在の年を取得
-    @current_age = current_user.age
-    @years = (@current_year - @current_age..@current_year).to_a.reverse
-    Rails.logger.info("Search results: #{@results.inspect}")
-    render :new
-  end
+def search
+  keyword = params[:keyword]
+  selected_year = params[:year]
+  youtube_search_service = YoutubeSearchService.new(keyword, selected_year)
+  @results = youtube_search_service.search
+  
+  @current_year = Time.now.year # 現在の年を取得
+  @current_age = current_user.age
+  @years = (@current_year - @current_age..@current_year).to_a.reverse
+  
+  Rails.logger.info("Search results: #{@results.inspect}")
+  render :new
+end
+
 
 
 
